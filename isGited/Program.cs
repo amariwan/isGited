@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 
 using isGited_App;
+using isGited_withoutRc;
 
 namespace isGited
 {
@@ -14,8 +15,9 @@ namespace isGited
     {
         static void Main(string[] args)
         {
-            app app = new app();
-            app.SearchInFiles(@"D:\projekte\", ".git");
+            //app app = new app();
+             withoutRc app = new  withoutRc();
+            app.SearchInFiles(@"/Users/snow/development/", ".git");
         }
     }
 }

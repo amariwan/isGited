@@ -12,66 +12,95 @@ namespace isGited_withoutRc
         {
             string dir = "";
             string[] dirs = new string[10000];
-            dirs[0] = @"D:\projekt";
-
+            dirs[0] = rootPath;
 
             for (int i = 0; i < dirs.Length; i++)
             {
-                dir = dirs[i];
-
-                string lastFolderName = getLastFolderName(dir);
-                if (lastFolderName == folderName)
+                if (dirs[i] != null || dirs[i] != "" || dirs[i] != " ")
                 {
-                    try
+                    dir = dirs[i];
+                    Console.WriteLine(dir + " ich bin");
+                }
+
+
+
+                int y = 1;
+                //Console.WriteLine($"befor {i} {dir}");
+                if (dir != null || dir != "")
+                {
+                    string[] dirs_1 = Directory.GetDirectories(dir);
+
+                    for (int x = 0; x < dirs_1.Length; x++)
                     {
-                        if (isGited(rootPath))
+                        dirs[y] = dirs_1[x];
+
+                        string lastFolderName = getLastFolderName(dirs[y]);
+                        //Console.WriteLine(lastFolderName);
+
+
+                        if (lastFolderName == folderName)
                         {
-                            Console.WriteLine(rootPath);
+                            try
+                            {
+                                Console.WriteLine(dirs[y]);
+                                if (isGited(dirs[y]))
+                                {
+                                    //Console.WriteLine(dirs[y]);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
+                        y++;
                     }
                 }
                 else
                 {
-                    string[] dirs_1 = Directory.GetDirectories(dir);
+                    Console.WriteLine("lol");
                 }
             }
+
         }
 
         // finde den letzten Ordner im Pfad
         public string getLastFolderName(string dir)
         {
-            // suche solange, bis du die Position des letzten \ gefunden hast
-            int lastBackslashPosition = -1;
-            int x = 0;
-            string backLash = @"\";
-            for (int i = 0; i < dir.Length; i++)
+            if (dir != null || dir == "")
             {
-                // suche bis zum nächsten \, merke die Position
-                int searchBackslash = astr.Search(dir, backLash, i);
-                if (searchBackslash != -1)
-                {
-                    i = searchBackslash + backLash.Length;
 
-                }
-                bool finded = (searchBackslash != -1);
-                if (finded)
+                // suche solange, bis du die Position des letzten \ gefunden hast
+                int lastBackslashPosition = -1;
+                string backLash = @"/";
+                for (int i = 0; i < dir.Length; i++)
                 {
-                    // wenn es letztes \ ist, dann wurde des letzte Ordner gefunden
-                    lastBackslashPosition = searchBackslash;
+                    // suche bis zum nächsten \, merke die Position
+                    int searchBackslash = astr.Search(dir, backLash, i);
+                    if (searchBackslash != -1)
+                    {
+                        i = searchBackslash + backLash.Length;
+
+                    }
+                    bool finded = (searchBackslash != -1);
+                    if (finded)
+                    {
+                        // wenn es letztes \ ist, dann wurde des letzte Ordner gefunden
+                        lastBackslashPosition = searchBackslash;
+                    }
                 }
+
+                //Console.WriteLine(lastBackslashPosition);
+                // nimm alles hinter der Position des letzten \
+                int LBLP = lastBackslashPosition + 1;
+                int lastPosition = lastBackslashPosition + 1;
+                int laenge = dir.Length - lastPosition;
+                string lastFolderName = astr.SubString(dir, LBLP, laenge);
+                Console.WriteLine(lastFolderName);
+                return lastFolderName;
             }
 
-            //Console.WriteLine(lastBackslashPosition);
-            // nimm alles hinter der Position des letzten \
-            int LBLP = lastBackslashPosition + 1;
-            int lastPosition = lastBackslashPosition + 1;
-            int laenge = dir.Length - lastPosition;
-            string lastFolderName = astr.SubString(dir, LBLP, laenge);
-            return lastFolderName;
+            return "";
         }
 
         public bool isGited(string dir)

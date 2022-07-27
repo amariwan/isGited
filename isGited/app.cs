@@ -49,7 +49,6 @@ namespace isGited_App
         {
             // suche solange, bis du die Position des letzten \ gefunden hast
             int lastBackslashPosition = -1;
-            int x = 0;
             string backLash = @"\";
             for (int i = 0; i < dir.Length; i++)
             {
