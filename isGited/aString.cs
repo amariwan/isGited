@@ -1,11 +1,12 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Threading.Tasks;
 
-namespace isGited {
+namespace isGited
+{
 	class AString
 	{
 		public int Length(string value)
@@ -231,6 +232,5 @@ namespace isGited {
 			}
 			return answer;
 		}
-
 	}
 }
