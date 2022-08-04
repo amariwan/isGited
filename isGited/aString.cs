@@ -5,8 +5,7 @@ using System.Text;
 using System.Collections;
 using System.Threading.Tasks;
 
-namespace aland
-{
+namespace isGited {
 	class AString
 	{
 		public int Length(string value)
@@ -232,5 +231,6 @@ namespace aland
 			}
 			return answer;
 		}
+
 	}
 }

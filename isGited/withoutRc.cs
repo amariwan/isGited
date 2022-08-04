@@ -1,17 +1,17 @@
-﻿using aland;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
+using isGited;
 
-namespace isGited_withoutRc
-{
+namespace isGited {
     class withoutRc
     {
         AString astr = new AString();
         public void SearchInFiles(string rootPath, string folderName)
         {
             string dir = "";
-            string[] dirs = new string[10000];
+            //static int dirs_c = 1;
+            string[] dirs = new string[10];
             dirs[0] = rootPath;
 
             for (int i = 0; i < dirs.Length; i++)
@@ -20,14 +20,9 @@ namespace isGited_withoutRc
                 {
                     dir = dirs[i];
                     Console.WriteLine(dir + " ich bin");
-                }
+                    
+                    int y = 1;
 
-
-
-                int y = 1;
-                //Console.WriteLine($"befor {i} {dir}");
-                if (dir != null || dir != "")
-                {
                     string[] dirs_1 = Directory.GetDirectories(dir);
 
                     for (int x = 0; x < dirs_1.Length; x++)
@@ -35,7 +30,7 @@ namespace isGited_withoutRc
                         dirs[y] = dirs_1[x];
 
                         string lastFolderName = getLastFolderName(dirs[y]);
-                        //Console.WriteLine(lastFolderName);
+                        Console.WriteLine(lastFolderName);
 
 
                         if (lastFolderName == folderName)
